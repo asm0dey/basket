@@ -1,0 +1,14 @@
+os: windows
+language: cpp
+script:
+  - choco install git
+  - git clone git@github.com:KDE/extra-cmake-modules.git
+  - cd extra-cmake-modules
+  - cmake
+  - make
+  - make install
+  - cd ..
+  - mkdir build
+  - cd build
+  - cmake -DCMAKE_INSTALL_PREFIX=`kf5-config --prefix` -DKDE_INSTALL_QTPLUGINDIR=`qtpaths --plugin-dir` ..
+  - make
